@@ -10,16 +10,25 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://contest-alert-one.vercel.app' // Explicitly allow the known frontend
+];
+
 if (process.env.CLIENT_URL) {
-  allowedOrigins.push(process.env.CLIENT_URL);
+  // Clean up the URL just in case (remove spaces and trailing slashes)
+  allowedOrigins.push(process.env.CLIENT_URL.trim().replace(/\/$/, ''));
 }
 
 app.use(cors({
   origin: (origin, callback) => {
     // allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
+    
+    const isAllowed = allowedOrigins.includes(origin) || origin.includes('vercel.app');
+    
+    if (!isAllowed) {
+      console.error(`CORS Blocked: Origin '${origin}' is not in allowedOrigins:`, allowedOrigins);
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
