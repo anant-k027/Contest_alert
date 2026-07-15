@@ -17,7 +17,30 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
-  // We will add platform handles, preferences, etc. in Phase 3
+  platformHandles: {
+    codeforces: { type: String, default: '' },
+    leetcode: { type: String, default: '' },
+    codechef: { type: String, default: '' },
+  },
+  notificationPreferences: {
+    channels: {
+      type: [String],
+      enum: ['email', 'telegram', 'discord'],
+      default: ['email'],
+    },
+    reminderTimes: {
+      type: [Number], // minutes before contest
+      default: [60], // Default 1 hour reminder
+    },
+  },
+  timezone: {
+    type: String,
+    default: 'UTC',
+  },
+  linkedEmails: {
+    type: [String],
+    default: [],
+  },
 }, { timestamps: true });
 
 // Encrypt password before saving
