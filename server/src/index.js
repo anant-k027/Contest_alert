@@ -22,6 +22,7 @@ const authRoutes = require('./routes/authRoutes');
 const contestRoutes = require('./routes/contestRoutes');
 const userRoutes = require('./routes/userRoutes');
 const startContestIngestionJob = require('./jobs/contestIngestionJob');
+const startReminderJob = require('./jobs/reminderJob');
 
 app.use('/api', indexRoutes);
 app.use('/api/auth', authRoutes);
@@ -30,6 +31,7 @@ app.use('/api/users', userRoutes);
 
 // Start background jobs
 startContestIngestionJob();
+startReminderJob();
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
