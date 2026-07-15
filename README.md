@@ -1,4 +1,6 @@
-# Contest Alert - Production Deployment Guide
+# Contest Alert 🏆
+
+**Live Demo:** [https://contest-alert-one.vercel.app](https://contest-alert-one.vercel.app)
 
 Contest Alert is built with a separated client (Vite/React) and server (Node.js/Express) architecture. Follow these instructions to deploy the application to Vercel (Frontend) and Render (Backend).
 
