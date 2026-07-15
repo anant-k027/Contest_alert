@@ -24,6 +24,9 @@ const syncLeetCode = async (handle) => {
         }
         userContestRanking(username: $username) {
           rating
+          badge {
+            name
+          }
         }
       }
     `;
@@ -47,6 +50,7 @@ const syncLeetCode = async (handle) => {
 
     const ranking = matchedUser.profile?.ranking || 0;
     const rating = contestRanking?.rating || 0;
+    const badge = contestRanking?.badge?.name || '';
     
     let total = 0;
     let easy = 0;
@@ -64,6 +68,7 @@ const syncLeetCode = async (handle) => {
     return {
       ranking,
       rating: Math.round(rating),
+      badge,
       solved: total,
       easy,
       medium,

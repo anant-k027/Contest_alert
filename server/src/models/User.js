@@ -57,6 +57,7 @@ const userSchema = new mongoose.Schema({
     leetcode: {
       rating: Number,
       ranking: Number,
+      badge: String,
       solved: Number,
       easy: Number,
       medium: Number,

@@ -245,15 +245,12 @@ const Profile = () => {
                 </div>
               ) : stats.codeforces ? (
                 <div className="grid grid-cols-3 gap-4 mt-2">
-                  <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#EBE6DD]">
+                  <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#EBE6DD] flex flex-col justify-center">
                     <span className="block text-xs text-stone-500 font-medium mb-1">Current Rating</span>
                     <span className="block text-xl font-bold text-stone-800">{stats.codeforces.rating}</span>
+                    <span className="block text-xs text-teal-600 font-medium mt-1 capitalize">{stats.codeforces.rank}</span>
                   </div>
-                  <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#EBE6DD]">
-                    <span className="block text-xs text-stone-500 font-medium mb-1">Rank</span>
-                    <span className="block text-xl font-bold text-stone-800 capitalize">{stats.codeforces.rank}</span>
-                  </div>
-                  <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#EBE6DD]">
+                  <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#EBE6DD] flex flex-col justify-center">
                     <span className="block text-xs text-stone-500 font-medium mb-1">Problems Solved</span>
                     <span className="block text-xl font-bold text-stone-800">{stats.codeforces.solved}</span>
                   </div>
@@ -295,9 +292,12 @@ const Profile = () => {
                 </div>
               ) : stats.leetcode ? (
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
-                  <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#EBE6DD] md:col-span-1">
+                  <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#EBE6DD] md:col-span-1 flex flex-col justify-center">
                     <span className="block text-xs text-stone-500 font-medium mb-1">Contest Rating</span>
                     <span className="block text-xl font-bold text-stone-800">{stats.leetcode.rating}</span>
+                    {stats.leetcode.badge && (
+                      <span className="block text-xs text-orange-600 font-medium mt-1">{stats.leetcode.badge}</span>
+                    )}
                   </div>
                   <div className="bg-[#FDFBF7] p-4 rounded-xl border border-[#EBE6DD] md:col-span-3 flex justify-around items-center">
                     <div className="text-center">
