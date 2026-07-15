@@ -2,7 +2,25 @@
 
 **Live Demo:** [https://contest-alert-git-main-cheetiiii.vercel.app](https://contest-alert-git-main-cheetiiii.vercel.app)
 
-Contest Alert is built with a separated client (Vite/React) and server (Node.js/Express) architecture. Follow these instructions to deploy the application to Vercel (Frontend) and Render (Backend).
+**Contest Alert** is a full-stack web application designed for competitive programmers. It automatically tracks upcoming coding contests from platforms like Codeforces and LeetCode, syncs your live user ratings, and sends personalized email reminders so you never miss a match!
+
+## 🚀 Features
+- 🗓️ **Live Contest Dashboard:** View upcoming and active coding contests from major platforms (via Clist.by).
+- ⏰ **Automated Reminders:** Get scheduled email alerts before your favorite contests start.
+- 📊 **Profile Syncing:** Automatically fetch and display your Codeforces Rank/Rating and LeetCode Badge/Rating.
+- 🔒 **Secure Authentication:** Complete JWT-based login, registration, and session management system.
+
+## 🛠️ Tech Stack
+- **Frontend:** React (Vite), Tailwind CSS, React Router DOM, Axios
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB (Mongoose)
+- **Integrations:** Clist.by API, LeetCode GraphQL, Nodemailer, node-cron
+
+---
+
+## 🚀 Deployment Guide
+
+Follow these instructions to deploy the application to Vercel (Frontend) and Render (Backend).
 
 ## 1. Prepare MongoDB Atlas
 Before deploying the backend, ensure your database is accessible from the production environment.
