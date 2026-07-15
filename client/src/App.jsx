@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Preferences from './pages/Preferences';
+import Profile from './pages/Profile';
 import './App.css';
 
 const ProtectedRoute = ({ children }) => {
@@ -38,6 +39,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Preferences />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/profile" 
+        element={
+          <ProtectedRoute>
+            <Profile />
           </ProtectedRoute>
         } 
       />

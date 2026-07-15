@@ -50,8 +50,14 @@ const Dashboard = () => {
               {user?.email}
             </span>
             <button 
+              onClick={() => navigate('/profile')}
+              className="text-sm font-medium text-stone-500 hover:text-teal-700 transition-colors"
+            >
+              Profile
+            </button>
+            <button 
               onClick={() => navigate('/preferences')}
-              className="text-sm font-medium text-teal-700 hover:text-teal-800 transition-colors"
+              className="text-sm font-medium text-stone-500 hover:text-teal-700 transition-colors"
             >
               Preferences
             </button>

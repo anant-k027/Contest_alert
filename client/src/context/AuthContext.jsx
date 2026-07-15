@@ -40,10 +40,41 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
-  const updatePreferences = async (preferences) => {
-    const { data } = await api.put('/users/preferences', preferences);
-    setUser(data);
-    return data;
+  const updatePreferences = async (preferencesData) => {
+    try {
+      const response = await api.put('/users/preferences', preferencesData);
+      setUser(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating preferences', error);
+      throw error;
+    }
+  };
+
+  const updateHandles = async (handlesData) => {
+    try {
+      const response = await api.put('/users/handles', handlesData);
+      setUser(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating handles', error);
+      throw error;
+    }
+  };
+
+  const syncStats = async () => {
+    try {
+      const response = await api.post('/users/sync-stats');
+      // Sync stats returns { message, platformStats } but we need to update user.platformStats
+      setUser(prev => ({
+        ...prev,
+        platformStats: response.data.platformStats
+      }));
+      return response.data;
+    } catch (error) {
+      console.error('Error syncing stats', error);
+      throw error;
+    }
   };
 
   const logout = async () => {
@@ -54,7 +85,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, updatePreferences }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, updatePreferences, updateHandles, syncStats }}>
       {children}
     </AuthContext.Provider>
   );

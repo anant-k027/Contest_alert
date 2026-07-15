@@ -45,6 +45,32 @@ const userSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
+  platformStats: {
+    codeforces: {
+      rating: Number,
+      maxRating: Number,
+      rank: String,
+      solved: Number,
+      lastSyncedAt: Date,
+      error: String,
+    },
+    leetcode: {
+      rating: Number,
+      ranking: Number,
+      solved: Number,
+      easy: Number,
+      medium: Number,
+      hard: Number,
+      lastSyncedAt: Date,
+      error: String,
+    },
+    codechef: {
+      rating: Number,
+      maxRating: Number,
+      lastSyncedAt: Date,
+      error: String,
+    }
+  }
 }, { timestamps: true });
 
 // Encrypt password before saving
