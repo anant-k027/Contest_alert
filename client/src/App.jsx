@@ -1,31 +1,49 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, AuthContext } from './context/AuthContext';
+import { useContext } from 'react';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 import './App.css';
 
-function App() {
-  const [message, setMessage] = useState('Loading...');
+const ProtectedRoute = ({ children }) => {
+  const { user, loading } = useContext(AuthContext);
+  
+  if (loading) return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Loading...</div>;
+  if (!user) return <Navigate to="/login" />;
+  
+  return children;
+};
 
-  useEffect(() => {
-    const fetchMessage = async () => {
-      try {
-        const response = await axios.get('/api/hello');
-        setMessage(response.data.message);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setMessage('Error loading message from server.');
-      }
-    };
-    
-    fetchMessage();
-  }, []);
+function AppRoutes() {
+  const { user, loading } = useContext(AuthContext);
+
+  if (loading) return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center text-white">
-      <h1 className="text-5xl font-bold mb-8 text-blue-400">Contest Alert</h1>
-      <p className="text-xl bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
-        Backend says: <span className="text-green-400 font-semibold">{message}</span>
-      </p>
-    </div>
+    <Routes>
+      <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
+      <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
+      <Route 
+        path="/dashboard" 
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } 
+      />
+      <Route path="*" element={<Navigate to={user ? "/dashboard" : "/login"} />} />
+    </Routes>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </AuthProvider>
   );
 }
 
