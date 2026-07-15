@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Preferences from './pages/Preferences';
 import './App.css';
 
 const ProtectedRoute = ({ children }) => {
@@ -29,6 +30,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/preferences" 
+        element={
+          <ProtectedRoute>
+            <Preferences />
           </ProtectedRoute>
         } 
       />

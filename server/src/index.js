@@ -20,11 +20,13 @@ app.use(cookieParser());
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/authRoutes');
 const contestRoutes = require('./routes/contestRoutes');
+const userRoutes = require('./routes/userRoutes');
 const startContestIngestionJob = require('./jobs/contestIngestionJob');
 
 app.use('/api', indexRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/contests', contestRoutes);
+app.use('/api/users', userRoutes);
 
 // Start background jobs
 startContestIngestionJob();

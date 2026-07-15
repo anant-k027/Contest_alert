@@ -24,6 +24,9 @@ const registerUser = async (req, res) => {
       res.status(201).json({
         _id: user._id,
         email: user.email,
+        platformHandles: user.platformHandles,
+        notificationPreferences: user.notificationPreferences,
+        timezone: user.timezone,
         token: accessToken,
       });
     } else {
@@ -51,6 +54,9 @@ const loginUser = async (req, res) => {
       res.json({
         _id: user._id,
         email: user.email,
+        platformHandles: user.platformHandles,
+        notificationPreferences: user.notificationPreferences,
+        timezone: user.timezone,
         token: accessToken,
       });
     } else {
@@ -106,6 +112,9 @@ const getUserProfile = async (req, res) => {
     res.json({
       _id: user._id,
       email: user.email,
+      platformHandles: user.platformHandles,
+      notificationPreferences: user.notificationPreferences,
+      timezone: user.timezone,
     });
   } else {
     res.status(404).json({ message: 'User not found' });

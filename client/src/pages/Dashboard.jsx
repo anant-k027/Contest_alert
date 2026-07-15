@@ -3,10 +3,12 @@ import { AuthContext } from '../context/AuthContext';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../api/axios';
 import ContestCard from '../components/ContestCard';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const { user, logout } = useContext(AuthContext);
   const [filter, setFilter] = useState('all');
+  const navigate = useNavigate();
 
   const { data: contests = [], isLoading, isError } = useQuery({
     queryKey: ['contests'],
@@ -16,12 +18,17 @@ const Dashboard = () => {
     },
   });
 
-  const filteredContests = contests.filter((c) => 
-    filter === 'all' ? true : c.platform === filter
-  );
+  const followedPlatforms = user?.notificationPreferences?.followedPlatforms || ['codeforces', 'leetcode', 'codechef'];
+
+  const filteredContests = contests.filter((c) => {
+    if (filter === 'all') {
+      return followedPlatforms.includes(c.platform);
+    }
+    return c.platform === filter;
+  });
 
   const platforms = [
-    { id: 'all', label: 'All Platforms' },
+    { id: 'all', label: 'My Platforms' },
     { id: 'codeforces', label: 'Codeforces' },
     { id: 'leetcode', label: 'LeetCode' },
     { id: 'codechef', label: 'CodeChef' },
@@ -42,6 +49,12 @@ const Dashboard = () => {
             <span className="text-sm text-stone-500 hidden sm:inline-block">
               {user?.email}
             </span>
+            <button 
+              onClick={() => navigate('/preferences')}
+              className="text-sm font-medium text-teal-700 hover:text-teal-800 transition-colors"
+            >
+              Preferences
+            </button>
             <button 
               onClick={logout}
               className="text-sm font-medium text-stone-500 hover:text-red-500 transition-colors"

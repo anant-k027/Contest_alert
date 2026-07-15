@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
       enum: ['email', 'telegram', 'discord'],
       default: ['email'],
     },
+    followedPlatforms: {
+      type: [String],
+      default: ['codeforces', 'leetcode', 'codechef'],
+    },
     reminderTimes: {
       type: [Number], // minutes before contest
       default: [60], // Default 1 hour reminder
