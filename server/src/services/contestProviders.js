@@ -63,7 +63,7 @@ const fetchClistContests = async () => {
       return {
         name: c.event,
         platform: platform,
-        startTime: new Date(c.start), // Clist returns ISO strings in UTC
+        startTime: new Date(c.start + 'Z'), // Append Z because Clist returns UTC without it
         duration: c.duration / 60, // Clist duration is in seconds, convert to minutes
         url: c.href,
         externalId: `clist_${c.id}`,
