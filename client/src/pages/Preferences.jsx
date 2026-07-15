@@ -96,7 +96,7 @@ const Preferences = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-stone-800 font-sans selection:bg-teal-100">
+    <div className="min-h-screen bg-[#FDFBF7] text-stone-800 font-sans selection:bg-teal-100 animate-fade-in">
       {/* Navbar / Header */}
       <header className="bg-[#F5F2EA] border-b border-[#EBE6DD] sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -130,7 +130,7 @@ const Preferences = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-3xl mx-auto px-6 py-10">
+      <main className="max-w-3xl mx-auto px-6 py-10 animate-slide-up">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-stone-800 tracking-tight mb-2">Notification Preferences</h2>
           <p className="text-stone-500">Customize what contests you see and how you're reminded.</p>
