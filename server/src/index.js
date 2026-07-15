@@ -17,12 +17,15 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// Routes
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/authRoutes');
+const startContestIngestionJob = require('./jobs/contestIngestionJob');
 
 app.use('/api', indexRoutes);
 app.use('/api/auth', authRoutes);
+
+// Start background jobs
+startContestIngestionJob();
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
