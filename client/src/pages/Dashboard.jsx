@@ -45,40 +45,28 @@ const Dashboard = () => {
             </div>
             <h1 className="text-xl font-bold text-stone-800 tracking-tight">Contest Alert</h1>
           </div>
-          <div className="flex flex-col items-end gap-1.5">
-            <div className="flex items-center gap-6">
-              <span className="text-sm text-stone-500 hidden sm:inline-block">
-                {user?.email}
-              </span>
-              <button 
-                onClick={() => navigate('/profile')}
-                className="text-sm font-medium text-stone-500 hover:text-teal-700 transition-colors"
-              >
-                Profile
-              </button>
-              <button 
-                onClick={() => navigate('/preferences')}
-                className="text-sm font-medium text-stone-500 hover:text-teal-700 transition-colors"
-              >
-                Preferences
-              </button>
-              <button 
-                onClick={logout}
-                className="text-sm font-medium text-stone-500 hover:text-red-500 transition-colors"
-              >
-                Sign out
-              </button>
-            </div>
-            
-            {/* User Ranks */}
-            <div className="flex items-center gap-4 text-xs text-stone-400">
-              {user?.platformStats?.codeforces?.rank && (
-                <span className="capitalize"><span className="font-semibold text-blue-500">CF</span> {user.platformStats.codeforces.rank}</span>
-              )}
-              {user?.platformStats?.leetcode?.badge && (
-                <span className="capitalize"><span className="font-semibold text-orange-500">LC</span> {user.platformStats.leetcode.badge}</span>
-              )}
-            </div>
+          <div className="flex items-center gap-6">
+            <span className="text-sm text-stone-500 hidden sm:inline-block">
+              {user?.email}
+            </span>
+            <button 
+              onClick={() => navigate('/profile')}
+              className="text-sm font-medium text-stone-500 hover:text-teal-700 transition-colors"
+            >
+              Profile
+            </button>
+            <button 
+              onClick={() => navigate('/preferences')}
+              className="text-sm font-medium text-stone-500 hover:text-teal-700 transition-colors"
+            >
+              Preferences
+            </button>
+            <button 
+              onClick={logout}
+              className="text-sm font-medium text-stone-500 hover:text-red-500 transition-colors"
+            >
+              Sign out
+            </button>
           </div>
         </div>
       </header>
